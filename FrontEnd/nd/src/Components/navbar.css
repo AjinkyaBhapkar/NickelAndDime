@@ -1,0 +1,55 @@
+.logo{
+    font-family: 'Caveat', cursive;
+    font-size: 2.5rem;
+    padding: 50px 0;
+}
+
+.navbar{
+    display: flex;
+    padding: 30px;
+    align-items: center;
+    max-width: 100vw;
+}
+.navbar>p{
+    margin-left: auto;
+    margin-right: 5px;
+}
+.menu{
+    position: absolute;
+    z-index: 1000;
+    display: block;
+    display: flex;
+    flex-direction: column;
+    padding-left: 10vw;
+    position: absolute;
+   
+    
+    /* left: -270px; */
+    background-color: #1F2A35;
+    width: 60vw;
+    height: 100vh;
+    
+}
+.close-menu{
+    display: flex;
+    margin-left: -10vw;
+    flex-direction: row;
+    align-content: stretch;
+    justify-content: space-around;
+    padding: 30px;
+}
+
+
+.menu-list{
+    list-style: none;
+    
+}
+.menu-list>li{
+    padding: 15px 0;
+}
+.menu-bottom{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 87vh;
+}
