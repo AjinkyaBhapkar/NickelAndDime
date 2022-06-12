@@ -14,7 +14,7 @@ function Login() {
                 <button className='btn' onClick={s} >SignUp</button>
 
             </div>
-            <form className='form' action="/">
+            <form className='form' action="./">
                 <input type="text" placeholder='Username' />
                 <input type="password" placeholder='Password' />
                 <input style={{display:formStyle}} type="text" placeholder='Confirm Password' />

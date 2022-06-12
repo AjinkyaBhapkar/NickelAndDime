@@ -15,20 +15,33 @@
     margin-right: 5px;
 }
 .menu{
-    position: absolute;
+    position: fixed;
     z-index: 1000;
     display: block;
     display: flex;
     flex-direction: column;
     padding-left: 10vw;
-    position: absolute;
-   
     
+   
+    justify-content: space-evenly;
     /* left: -270px; */
     background-color: #1F2A35;
     width: 60vw;
     height: 100vh;
     
+}
+@media screen and (min-width: 990px){
+    .menu{
+        left: 0px !important;
+    width: 20vw;
+    padding-left: 3vw;
+    }
+    .navbar-container{
+        display: flex;
+    }
+    .close-menu{
+        display: none !important;
+    }
 }
 .close-menu{
     display: flex;
@@ -50,6 +63,6 @@
 .menu-bottom{
     display: flex;
     align-items: center;
-    position: absolute;
-    top: 87vh;
+    /* position: absolute; */
+    /* top: 87vh; */
 }

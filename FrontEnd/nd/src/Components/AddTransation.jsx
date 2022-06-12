@@ -1,30 +1,67 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 import './addTransaction.css'
 const AddTransation = () => {
   const [show, setShow] = useState('none')
-  const k = () => {
-    setShow('')
+  const k = () => { setShow('') }
+  const n = e => { e.preventDefault(); setShow('none') }
+
+  const [formdata, setFormData] = useState({
+
+    username: "Ajinkya",
+    type: "",
+    amount: "",
+    description: "",
+    tags: "",
+    date: ""
+
+  })
+
+  const handle = e => {
+    const newData = { ...formdata }
+    newData[e.target.id] = e.target.value
+    setFormData(newData)
+    console.log(newData)
+
   }
+
+  const submit = e => {
+    e.preventDefault();
+    axios.post('http://localhost:5000/transactions/add', {
+      username: formdata.username,
+      type: formdata.type,
+      amount: formdata.amount,
+      description: formdata.description,
+      tags: formdata.tags,
+      date: formdata.date
+    })
+      .then(res => {
+        console.log(res.data)
+      })
+  }
+
   return (<>
     <div className='add-transaction'>
       <button className='add-transaction-btn' onClick={k}>+</button>
-      </div>
-    <div className='add-transaction-form-container' style={{ display: show }}>
-      <form className='add-transaction-form' action="/">
+    </div>
+    <div className='add-transaction-form-container' style={{ display: show }}  >
+      <form className='add-transaction-form'>
         <div className='add-transaction-form-radio'>
 
 
-          <input type='radio' id='debit' name='type' checked />
-          <label for="debit" >Debit</label>
-          <input type='radio' id='credit' name='type' />
-          <label for ='credit'>Credit</label>
+          <input onChange={(e) => handle(e)} value={'debit'} type='radio' id='type' name='type'  />
+          <label htmlFor="debit" >Debit</label>
+          <input onChange={(e) => handle(e)} value={'credit'} type='radio' id='type' name='type' />
+          <label htmlFor='credit'>Credit</label>
 
         </div>
 
-        <input type="number" id="" placeholder='Amount' />
-        <input type="text" id="" placeholder='Description' />
-        <input type="text" id="" placeholder='Tags' />
-        <input type="Submit" id='add-transaction-form-sbtn' />
+        <input onChange={(e) => handle(e)} value={formdata.amount} type="number" id="amount" placeholder='Amount' />
+        <input onChange={(e) => handle(e)} value={formdata.description} type="text" id="description" placeholder='Description' />
+        <input onChange={(e) => handle(e)} value={formdata.tags} type="text" id="tags" placeholder='Tags' />
+        <input onChange={(e) => handle(e)} value={formdata.date} type="date" id="date" />
+        <input type="Submit" onClick={submit} id='add-transaction-form-sbtn' />
+        <button id='cancel-btn' onClick={n}>Cancel</button>
       </form>
     </div>
   </>

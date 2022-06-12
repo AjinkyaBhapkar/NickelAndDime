@@ -1,14 +1,55 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import './statusBar.css'
 const StatusBar = () => {
-    let Total = 10000;
-    let Balance=3800;
-    let k=  (Balance *90/Total) 
+  let credit=0
+  let debit=0
+const[debits,setDebits]=useState([])
+const retriveDebit=()=>{
+  axios.get('http://localhost:5000/transactions/type/debit')
+  .then(resp=> {
+    setDebits(resp.data)
+    
+    
+  })
+}
+const[credits,setCredits]=useState([])
+const retriveCredit=()=>{
+  axios.get('http://localhost:5000/transactions/type/credit')
+  .then(res=> {
+    setCredits(res.data)
+    
+  })
+}
+
+
+useEffect(()=>{
+  retriveCredit();
+  retriveDebit();
+  
+
+},[])
+
+
+     
   return (
       <div className='status-bar-all'>
       <div className='status-bar'></div>
-      <div className='status' style={{width:k+'vw'}}></div>
-      <div className='status-values'><p>{Balance}</p><p>{Total}</p></div>
+      {
+        debits.map(d=>{
+          debit=debit+d.amount
+        })
+        
+      }
+      {
+        credits.map(c=>{
+          credit=credit+c.amount
+        })
+      }
+      
+      <div className='status' style={{width: ((((credit-debit) *90/credit)>0)?((credit-debit) *90/credit):0 )+'vw'}}></div>
+
+      <div className='status-values'><p>{credit-debit}</p><p>{credit}</p></div>
       </div>
   )
 }
