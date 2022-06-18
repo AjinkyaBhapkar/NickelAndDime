@@ -37,10 +37,13 @@
     padding: 20px 0;
     align-items: center;
 }
-.day-transactions>ul{width: inherit;}
-.day-transactions>li{
+.day-transactions>ul{
     width: inherit;
     list-style: none;
+
+}
+.day-transactions>li{
+    width: inherit;
     
 }
 .day-transactions-transaction{
@@ -69,4 +72,17 @@
 }
 .green{
     color: rgb(51, 160, 51);
+}
+
+@media screen and (min-width: 990px){
+    .day-transactions-container{
+        width: 80%;
+        left: auto;
+        right: 0;
+    }
+    .day-transactions{
+        width: 55%;
+        left: auto;
+        right: 10%;
+    }
 }

@@ -40,7 +40,7 @@ const Mbils = () => {
     title();
   })
   return (
-    <div>
+    <div className='monthlybills-mains'>
       <h2>{month}</h2>
       <div className='list'>
         <p>Electricity Bill <span className={eb}></span></p>

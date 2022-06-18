@@ -2,15 +2,12 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import './allTransactions.css'
-
+import AddTransaction from './AddTransation'
 const AllTransactions = () => {
   const [fu, setFu] = useState([])
   let Months = [0, 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
 
-  useEffect(() => {
-    retriveTransactions();
 
-  }, [])
 
   const retriveTransactions = () => {
     axios.get("http://localhost:5000/transactions")
@@ -33,6 +30,7 @@ const AllTransactions = () => {
   const back = () => {
     console.log('clicked')
     setPop('none');
+
   }
 
   const deleteTransaction = () => {
@@ -43,23 +41,57 @@ const AllTransactions = () => {
       })
 
   }
+
+  const [p, setP] = useState({
+    username: "Ajinkya",
+    type: "",
+    amount: "",
+    description: "",
+    tags: "",
+    date: "",
+    display: 'none'
+  })
+
+  const e = () => {
+    setP(
+      {
+        username: tranx.username,
+        type: tranx.type,
+        amount: tranx.amount,
+        description: tranx.description,
+        tags: tranx.tags,
+        date: tranx.date,
+        display: ''
+
+      })
+
+    console.log(p)
+
+
+  }
+  useEffect(() => {
+    retriveTransactions();
+
+  }, [])
   return (
     <div className='recent-transactions'>
       <h2>Recent Transactions</h2>
       <ul>
         {
-          console.log(fu.sort((a,b)=>(a.date > b.date) ? -1 : ((b.date > a.date) ? +1 : 0)))
-          
+          console.log(fu.sort((a, b) => (a.date > b.date) ? -1 : ((b.date > a.date) ? +1 : 0)))
+
         }
-        
+
         {
           fu.map(({ _id, username, type, amount, description, tags, date }) => {
             const v = () => {
               setPop('show')
+
               console.log(_id)
               axios.get(`http://localhost:5000/transactions/${_id}`)
                 .then(data => {
                   setTranx(data.data)
+
                 })
                 .catch(err => console.log(err))
             }
@@ -78,6 +110,7 @@ const AllTransactions = () => {
         }
       </ul>
       <div className={`screen ${pop}`}>
+
         <div className=' transaction-details' >
           <div className='transaction-data'><p>Type:{tranx.type}</p>
             <p>Amount:{tranx.amount}</p>
@@ -88,13 +121,20 @@ const AllTransactions = () => {
           <div className='transaction-details-btn'>
             <button className='b1' onClick={back}>Back</button>
             <div className='b2-div'>
-              <button className='b2'>Edit</button>
+              <button className='b2' onClick={e}>Edit</button>
               <button className='b2' onClick={deleteTransaction}>Delete</button>
             </div>
           </div>
 
         </div>
       </div>
+      {
+
+      }
+
+      <AddTransaction pr={p} />
+
+
 
     </div>
   )

@@ -39,7 +39,7 @@ const NavBar = () => {
     </div>
 
     <div className='navbar'>
-      <span onClick={toggle}><MenuIcon style={{ color: "#D9D9D9" }} /></span>
+      <span onClick={toggle} className='hamburger'><MenuIcon style={{ color: "#D9D9D9" }} /></span>
       <p>User name</p>
       <AccountCircleIcon style={{ color: "#D9D9D9" }} />
     </div>

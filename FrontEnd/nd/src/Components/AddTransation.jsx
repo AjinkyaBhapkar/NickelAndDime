@@ -1,19 +1,26 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import './addTransaction.css'
-const AddTransation = () => {
-  const [show, setShow] = useState('none')
+const AddTransation = (pr) => {
+  const [show, setShow] = useState(pr.pr.display)
   const k = () => { setShow('') }
   const n = e => { e.preventDefault(); setShow('none') }
 
   const [formdata, setFormData] = useState({
 
-    username: "Ajinkya",
-    type: "",
-    amount: "",
-    description: "",
-    tags: "",
-    date: ""
+    // username: "Ajinkya",
+    // type: "",
+    // amount: "",
+    // description: "",
+    // tags: "",
+    // date: ""
+
+    username: pr.pr.username,
+    type: pr.pr.type,
+    amount: pr.pr.amount,
+    description: pr.pr.description,
+    tags: pr.pr.tags,
+    date: pr.pr.date
 
   })
 
@@ -42,7 +49,7 @@ const AddTransation = () => {
 
   return (<>
     <div className='add-transaction'>
-      <button className='add-transaction-btn' onClick={k}>+</button>
+      <button className='add-transaction-btn' onClick={k}>Add transaction</button>
     </div>
     <div className='add-transaction-form-container' style={{ display: show }}  >
       <form className='add-transaction-form'>

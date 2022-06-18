@@ -3,15 +3,33 @@
     width: 100vw;
     justify-content: center;
     position: fixed;
-    bottom: 50px;
+    z-index: 5;
+    bottom: 30px;
 }
 
 .add-transaction-btn {
     border: none;
-    border-radius: 50%;
-    height: 60px;
-    width: 60px;
-    font-size: 2.5rem;
+    border-radius: 12px;
+    padding: 8px;
+    
+    font-size: 1.2rem;
+    color: #132230;
+}
+@media screen and (min-width: 990px){
+    .add-transaction{
+        width: inherit;
+        margin-left: -10%;
+    }
+    .add-transaction-btn:hover{
+        color: #d9d9d9;
+        background-color: #132230;
+        border : 2px solid #d9d9d9;
+        cursor: pointer;
+    }
+    .add-transaction-form-container{
+        right: 0;
+        z-index: 6;
+    }
 }
 
 .add-transaction-form-container {
@@ -89,7 +107,7 @@
 }
 
 #add-transaction-form-sbtn {
-    margin-top: 10vh;
+    margin-top: 5vh;
 
     border: none;
     background-color: #132230;
@@ -107,4 +125,16 @@
     width: 80%;
     padding: 3px;
     margin: 4vh;
+}
+
+@media screen and (min-width: 990px){
+    .add-transaction-form-container{
+        width: 80vw;
+    }
+    .add-transaction-form{
+        top: 5vh;
+        left: auto;
+        right: 20%;
+        width: auto;
+    }
 }

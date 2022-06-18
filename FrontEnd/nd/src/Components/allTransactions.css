@@ -23,7 +23,9 @@
 }
 .screen{
     position: fixed;
+    z-index: 6;
     top: 0;
+    left:0;
     background-color: rgba(217, 217, 217, 0.8);
     height: 100vh;
     width: 100vw;
@@ -92,4 +94,25 @@
     height: 65vh;
     overflow: scroll;
     margin-bottom: 80px;
+}
+@media screen and (min-width: 990px){
+    .recent-transactions>h2{
+        padding: 10px;
+    }
+    .recent-transactions>ul{
+        margin-bottom: 0;
+        height: 55vh;
+    }
+    .transaction-details{
+        width: 55vw;
+        left: auto;
+        right: 10%;
+    }
+    .b1{
+        width: 80%;
+    }
+    .b2-div{
+        width: 80%;
+    }
+
 }

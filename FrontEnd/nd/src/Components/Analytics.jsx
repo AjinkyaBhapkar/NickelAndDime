@@ -55,31 +55,34 @@ const Analytics = () => {
                 </div>
                 <div className='form-container'>
                     <form >
-                        <input type="text" onChange={(e) => handle(e)}  placeholder='Search transactions by tag' />
-                        <input type="submit" onClick={submit}/>
+                        <input type="text" onChange={(e) => handle(e)} placeholder='Search transactions by tag' />
+                        <input className='submit-btn' type="submit" onClick={submit} />
                     </form>
                 </div>
-                <div className='transactions'>
-                    {
-                        console.log(ta.sort((a, b) => (a.date > b.date) ? -1 : ((b.date > a.date) ? +1 : 0)))
-                    }
-                    <h3>Transactions with <br/> {tag} tag</h3>
-                    {
-                        ta.map(all => {
+                <div className='analytics-mains'>
+                    <div className='transactions'>
+                        {
+                            console.log(ta.sort((a, b) => (a.date > b.date) ? -1 : ((b.date > a.date) ? +1 : 0)))
+                        }
+                        <h3>Transactions with <i>"{tag}"</i>  tag</h3>
+                        {
+                            ta.map(all => {
 
-                            total = total + all.amount;
-                            return (
-                                <div className='transaction'>
-                                    <p >{all.date.slice(0, 10)}</p>
-                                    <p>{(((all.description).length)>15)?(all.description.slice(0,15))+'..':(all.description)}</p>
-                                    <p className={(all.type=='credit')? 'green':"red"}>{all.amount} </p>
-                                </div>
-                            )
-                        })
-                    }
+                                total = total + all.amount;
+                                return (
+                                    <div className='transaction'>
+                                        <p >{all.date.slice(0, 10)}</p>
+                                        <p>{(((all.description).length) > 15) ? (all.description.slice(0, 15)) + '..' : (all.description)}</p>
+                                        <p className={(all.type == 'credit') ? 'green' : "red"}>{all.amount} </p>
+                                    </div>
+                                )
+                            })
+                        }
 
+                    </div>
                 </div>
-                <h3 className='total' >{tag} Total : {total}</h3>
+
+                <h3 className='total' ><i>"{tag}"</i> Total : {total}</h3>
 
 
             </div>

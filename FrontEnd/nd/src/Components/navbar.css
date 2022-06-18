@@ -42,6 +42,12 @@
     .close-menu{
         display: none !important;
     }
+    .navbar{
+        width: 100%;
+    }
+    .hamburger{
+        display: none;
+    }
 }
 .close-menu{
     display: flex;

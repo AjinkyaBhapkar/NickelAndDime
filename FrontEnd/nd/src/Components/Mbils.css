@@ -23,3 +23,8 @@ h2{
     width: 15px;
     border-radius: 100%;
 }
+@media screen and (min-width: 990px){
+    .monthlybills-mains{
+        width: 75vw;
+    }
+}
