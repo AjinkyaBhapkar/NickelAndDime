@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import './Mbils.css'
+import { useSelector } from 'react-redux';
+
 const Mbils = () => {
   const [eb, setEB] = useState("not-paid");
   const [r, setR] = useState("not-paid");
@@ -15,9 +17,9 @@ const Mbils = () => {
     check('credit card bill',setCCB);
     check('satelite tv',setST);
   }, [])
-
+  let username=useSelector(s=>s.user.username);
   const check = (rent,Set) => {
-    axios.get(`http://localhost:5000/transactions/tags/${rent}`)
+    axios.get(`http://localhost:5000/transactions/tags/${username}/${rent}`)
       .then(resp => {
         if (resp.data.length == 0) { Set('not-paid') }
         else if (resp.data.length == 1) { Set('paid') }

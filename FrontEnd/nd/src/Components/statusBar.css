@@ -1,10 +1,11 @@
 .status-bar-all {
-    max-width: 100vw;
+    max-width: 90vw;
+    margin: auto;
 }
 
 .status-bar {
     position: relative;
-    margin-left: 5vw;
+    /* margin-left: 5vw; */
     height: 25px;
     width: 90vw;
     background-color: #fff;
@@ -16,7 +17,7 @@
 .status {
     position: relative;
     top: -25px;
-    margin-left: 5vw;
+    /* margin-left: 5vw; */
     height: 25px;
     width: 90vw;
     background-color: #91B012;
@@ -30,7 +31,8 @@
     display: flex;
     margin: auto;
     justify-content: space-between;
-    max-width: 85vw;
+    /* max-width: 85vw; */
+    width: 95%;
 
 }
 
@@ -48,17 +50,17 @@
 
     .status-bar {
         max-width: 100%;
-        margin-left: 5%;
+        /* margin-left: 5%; */
 
     }
 
     .status {
-        margin-left: 5%;
+        /* margin-left: 5%; */
 
     }
 
     .status-values {
-        margin-left: 6%;
-        margin-right: -4%;
+        /* margin-left: 6%; */
+        /* margin-right: -4%; */
     }
 }

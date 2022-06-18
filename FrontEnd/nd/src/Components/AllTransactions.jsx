@@ -2,15 +2,20 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import './allTransactions.css'
-import AddTransaction from './AddTransation'
+import AddTransation from './AddTransation'
+import { useSelector,useDispatch } from 'react-redux'
+import { fill } from '../features/form/formSlice';
+
+
 const AllTransactions = () => {
+  const dispatch = useDispatch()
   const [fu, setFu] = useState([])
   let Months = [0, 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+  
 
-
-
+  let username=useSelector(s=>s.user.username);
   const retriveTransactions = () => {
-    axios.get("http://localhost:5000/transactions")
+    axios.get(`http://localhost:5000/transactions/user/${username}`)
       .then(all => {
         // console.log(all.data)
         setFu(all.data);
@@ -22,60 +27,39 @@ const AllTransactions = () => {
 
 
   const [tranx, setTranx] = useState({
-
+    username:'',
+    type:'debit',
     date: '2020-03-23T00:00:00.000Z'
 
   })
   const [pop, setPop] = useState('none')
   const back = () => {
-    console.log('clicked')
+    // console.log('clicked')
     setPop('none');
 
   }
 
   const deleteTransaction = () => {
-    console.log(tranx._id)
-    axios.delete(`http://localhost:5000/transactions/delete/${tranx._id}`)
+    // console.log(tranx._id)
+    axios.delete(`http://localhost:5000/transactions/delete/${username}/${tranx._id}`)
       .then(resp => {
         console.log(resp)
+        
+        setPop('none')
       })
 
   }
 
-  const [p, setP] = useState({
-    username: "Ajinkya",
-    type: "",
-    amount: "",
-    description: "",
-    tags: "",
-    date: "",
-    display: 'none'
-  })
 
-  const e = () => {
-    setP(
-      {
-        username: tranx.username,
-        type: tranx.type,
-        amount: tranx.amount,
-        description: tranx.description,
-        tags: tranx.tags,
-        date: tranx.date,
-        display: ''
-
-      })
-
-    console.log(p)
-
-
-  }
   useEffect(() => {
     retriveTransactions();
-
-  }, [])
+    
+  }, [useSelector(s => s.form.edit),pop])
+  let k=''
   return (
     <div className='recent-transactions'>
-      <h2>Recent Transactions</h2>
+      
+      <h2>Recent Transactions </h2>
       <ul>
         {
           console.log(fu.sort((a, b) => (a.date > b.date) ? -1 : ((b.date > a.date) ? +1 : 0)))
@@ -87,10 +71,10 @@ const AllTransactions = () => {
             const v = () => {
               setPop('show')
 
-              console.log(_id)
-              axios.get(`http://localhost:5000/transactions/${_id}`)
+              // console.log(_id)
+              axios.get(`http://localhost:5000/transactions/transaction/${username}/${_id}`)
                 .then(data => {
-                  setTranx(data.data)
+                  setTranx(data.data[0])
 
                 })
                 .catch(err => console.log(err))
@@ -112,7 +96,9 @@ const AllTransactions = () => {
       <div className={`screen ${pop}`}>
 
         <div className=' transaction-details' >
-          <div className='transaction-data'><p>Type:{tranx.type}</p>
+          {/* {console.log(tranx)} */}
+          <div className='transaction-data'>
+            <p>Type:{tranx.type}</p>
             <p>Amount:{tranx.amount}</p>
             <p>Description:<br />{tranx.description}</p>
             <p>Tags:{tranx.tags}</p>
@@ -121,7 +107,21 @@ const AllTransactions = () => {
           <div className='transaction-details-btn'>
             <button className='b1' onClick={back}>Back</button>
             <div className='b2-div'>
-              <button className='b2' onClick={e}>Edit</button>
+              <button className='b2'
+                onClick={() => {
+                  dispatch(fill({
+                    _id:`${tranx._id}`,
+                    username:`${tranx.username}`,
+                    type: `${tranx.type}`,
+                    amount: `${tranx.amount}`,
+                    description: `${tranx.description}`,
+                    tags: `${tranx.tags}`,
+                    date: `${String(tranx.date).slice(0,10)}`,
+                    edit:'',
+                    submit:'none',
+                    update:''
+                  }))}}
+              >Edit</button>
               <button className='b2' onClick={deleteTransaction}>Delete</button>
             </div>
           </div>
@@ -132,7 +132,7 @@ const AllTransactions = () => {
 
       }
 
-      <AddTransaction pr={p} />
+      <AddTransation />
 
 
 

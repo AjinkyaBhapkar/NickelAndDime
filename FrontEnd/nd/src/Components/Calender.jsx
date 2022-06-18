@@ -5,13 +5,16 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
 import axios from "axios";
 import './calender.css'
+import { useSelector } from 'react-redux'
+
 
 const Calender=()=> {
   const[empty,setEmpty]=React.useState('none')
   const [value, setValue] = React.useState(new Date());
 const [tranxs,setTranxs]=React.useState([])
+let username=useSelector(s=>s.user.username)
 function  retriveDay(date){
-  axios.get(`http://localhost:5000/transactions/date/${date}`)
+  axios.get(`http://localhost:5000/transactions/date/${username}/${date}`)
   .then(resp=>{
     setTranxs(resp.data)
     if(resp.data.length==0){setEmpty('')}

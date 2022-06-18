@@ -3,44 +3,62 @@ let Transaction = require('../models/transaction.model');
 
 
 
-router.route('/').get((req, res) => {
-    
-    Transaction.find()
+router.route('/user/:username').get((req, res) => {
+
+    Transaction.find({ username: req.params.username })
         .then(transactions => res.json(transactions))
         .catch(err => res.status(400).json('Error' + err));
 
 });
-router.route('/:id').get((req, res) => {
-    Transaction.findById(req.params.id)
+router.route('/transaction/:username/:id').get((req, res) => {
+    Transaction.find({ $and: [{ username: req.params.username }, { _id: req.params.id }] })
         .then(transaction => res.json(transaction))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/date/:date').get((req, res) => {
-    Transaction.find({ date: req.params.date })
+router.route('/date/:username/:date').get((req, res) => {
+    Transaction.find({ $and: [{ date: req.params.date }, { username: req.params.username }] })
+
         .then(transaction => res.json(transaction))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/tags/:tags').get((req, res) => {
-    Transaction.find({ tags: { $regex: req.params.tags } })
+router.route('/tags/:username/:tags').get((req, res) => {
+    Transaction.find({ $and: [{ username: req.params.username }, { tags: { $regex: req.params.tags } }] })
         .then(transaction => res.json(transaction))
         .catch(err => res.status(400).json('Error: ' + err));
 });
-router.route('/type/:type').get((req, res) => {
-    Transaction.find({ type: { $regex: req.params.type } })
+router.route('/type/:username/:type').get((req, res) => {
+    Transaction.find({ $and: [{ username: req.params.username }, { type: { $regex: req.params.type } }] })
         .then(transaction => res.json(transaction))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/delete/:id').delete((req, res) => {
-    Transaction.deleteOne({_id:req.params.id})
-        .then(transaction => {res.json(transaction)})
+router.route('/delete/:username/:id').delete((req, res) => {
+    Transaction.deleteOne({ $and: [{ username: req.params.username }, { _id: req.params.id }] })
+        .then(() => res.json('Transaction deleted!'))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 router.route('/deleteall').delete((req, res) => {
     Transaction.deleteMany({})
-        .then(transaction => {res.json(transaction)})
+        .then(transaction => { res.json(transaction) })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/update/:id').post((req, res) => {
+    Transaction.updateOne(
+        { _id: req.params.id },
+        {
+            $set: {
+                username:req.body.username,
+                type:req.body.type,
+                amount:req.body.amount,
+                description:req.body.description,
+                tags:req.body.tags,
+                date:req.body.date,
+            }
+        })
+        .then(() => { res.json('Transaction Updated! ') })
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
