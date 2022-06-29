@@ -5,6 +5,7 @@ import NavBar from './Components/NavBar';
 import StatusBar from './Components/StatusBar';
 import Login from './Login';
 import MonthlyBills from './MonthlyBills';
+import PageNotFound from './Components/PageNotFound';
 import {
   BrowserRouter as Router,
   Routes,
@@ -24,6 +25,7 @@ function App() {
           <Route  exact path="/login" element={<Login />} />
           <Route  exact path="/monthlybills" element={<MonthlyBills />} />
           <Route  exact path="/analytics" element={ <Analytics />} />
+          <Route path='*' element={<PageNotFound/>}/>
         </Routes>
       </div>
 

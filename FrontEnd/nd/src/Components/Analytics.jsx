@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import NavBar from './NavBar';
 import './analytics.css'
-
+import { useSelector } from 'react-redux';
 const Analytics = () => {
     const [ta, setTa] = useState([])
 
     useEffect(() => {
         retriveTags('food')
     }, [])
+    let username=useSelector(s=>s.user.username)
     const retriveTags = (tags) => {
-        axios.get(`http://localhost:5000/transactions/tags/${tags}`)
+        axios.get(`http://localhost:5000/transactions/tags/${username}/${tags}`)
             .then(all => {
 
                 setTa(all.data);

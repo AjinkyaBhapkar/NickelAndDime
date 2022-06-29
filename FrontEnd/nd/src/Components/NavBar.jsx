@@ -4,6 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import { useSelector } from 'react-redux'
 
 import { Link } from "react-router-dom";
 
@@ -40,7 +41,7 @@ const NavBar = () => {
 
     <div className='navbar'>
       <span onClick={toggle} className='hamburger'><MenuIcon style={{ color: "#D9D9D9" }} /></span>
-      <p>User name</p>
+      <p>{useSelector(s=>s.user.username)}</p>
       <AccountCircleIcon style={{ color: "#D9D9D9" }} />
     </div>
   </div>
