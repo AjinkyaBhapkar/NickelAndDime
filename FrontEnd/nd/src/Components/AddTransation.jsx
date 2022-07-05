@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import './addTransaction.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { fill } from '../features/form/formSlice';
-import{loginOut} from '../features/user/userSlice';
+// import{loginOut} from '../features/user/userSlice';
 
 const AddTransation = () => {
   const dispatch = useDispatch()
@@ -108,6 +108,8 @@ const AddTransation = () => {
 
     )
   }
+  
+  
   return (<>
     <div className='add-transaction'>
       <button className='add-transaction-btn' onClick={ocAddTransaction}>Add transaction</button>

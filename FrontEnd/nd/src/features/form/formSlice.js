@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const fullDate = new Date()
 const month = String(parseInt(fullDate.getMonth()) + 1).padStart(2, "0")
-const date = fullDate.getFullYear() + '-' + month + '-' + fullDate.getDate()
+const date = fullDate.getFullYear() + '-' + month + '-' + String(fullDate.getDate()).padStart(2, "0")
 
 
 const initialState = {
