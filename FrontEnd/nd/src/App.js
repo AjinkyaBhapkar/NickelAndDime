@@ -17,11 +17,15 @@ import Analytics from './Components/Analytics';
 import Homepage from './homepage';
 import ProtectedRoute from './utils/ProtectedRoute';
 import { Provider } from 'react-redux';
-import store from './app/store'
+import {store,persistor} from './app/store'
+import {PersistGate} from 'redux-persist/integration/react'
 
 function App() {
   return (
     <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+
+      
     <Router>
       <div className="App">
         <Routes>
@@ -34,6 +38,7 @@ function App() {
       </div>
 
     </Router>
+    </PersistGate>
     </Provider>
   );
 }
