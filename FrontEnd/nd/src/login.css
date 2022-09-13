@@ -1,3 +1,14 @@
+.unexpected-error-msg{
+    color: white;
+    background-color: rgb(225, 45, 75);
+    padding: 3px;
+    text-align: center;
+}
+
+.err{
+    display: none;
+}
+
 #logo {
     font-family: 'Caveat', cursive;
     text-align: center;

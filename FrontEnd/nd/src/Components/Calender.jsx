@@ -47,6 +47,7 @@ const h=()=>setVisible('none')
 
     <div className={`day-transactions-container ${visible}`} >
       <div className="day-transactions">
+      <button onClick={h} className="back-btn">Back</button>
         <h3>{day}</h3>
           <p className={empty}>No Transactions on the day</p>
         <ul>
@@ -60,15 +61,15 @@ const h=()=>setVisible('none')
             return(
               <li key={a._id}>
                 <div className="day-transactions-transaction">
-                  <p>{a.description}</p>
-                  <p1 className={(a.type=='credit')?"green":"red"}>{a.amount}</p1>
+                  <p className="day-transactions-transaction-description">{a.description}</p>
+                  <p className={(a.type=='credit')?"green":"red"}>{a.amount}</p>
                 </div>
               </li>
             )
           })
         }
         </ul>
-        <button onClick={h} className="back-btn">Back</button>
+        
       </div>
     </div>
   </>

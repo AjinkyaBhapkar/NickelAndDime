@@ -120,8 +120,8 @@ const AddTransation = () => {
 
 
           <input onChange={(e) => handle(e)} value={'debit'} type='radio' id='type' name='type' />
-          <label htmlFor="debit" >Debit</label>
-          <input onChange={(e) => handle(e)} value={'credit'} type='radio' id='type' name='type' />
+          <label htmlFor="debit"  >Debit</label>
+          <input onChange={(e) => handle(e)} value={'credit'} type='radio' id='type' name='type'  />
           <label htmlFor='credit'>Credit</label>
 
         </div>

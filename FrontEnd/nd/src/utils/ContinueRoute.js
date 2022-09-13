@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux/es/exports'
 import { Navigate } from 'react-router-dom'
 
-const ProtectedRoute = ({ children }) => {
+const ContinueRoute = ({ children }) => {
     const [users, setUsers] = useState([])
     const fetchUsers = async () => {
         await axios.get('http://localhost:5000/users/')
@@ -22,23 +22,15 @@ const ProtectedRoute = ({ children }) => {
     }, [])
 
 
-    return<>{
-        (useSelector(s => s.user.username) === '')?
-        
-        <Navigate to='/login' />:children
-    }
+    return <>
     
+        {
+            (useSelector(s => s.user.username) ==='' || !users.includes(useSelector(s => s.user.username))) ?
+                children : <Navigate to='/' />
+
+        }
     </>
-        
-    
-
-
-
-
-
-
-
 
 }
 
-export default ProtectedRoute
+export default ContinueRoute

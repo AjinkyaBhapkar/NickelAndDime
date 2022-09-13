@@ -4,21 +4,27 @@
     justify-content: center;
     position: fixed;
     z-index: 5;
-    bottom: 30px;
+    bottom: 0px;
 }
 
 .add-transaction-btn {
     border: none;
-    border-radius: 12px;
+    border-radius: 5px;
     padding: 8px;
-    
+    width: 100%;
+    margin: 1px;
     font-size: 1.2rem;
+    font-weight: 500;
     color: #132230;
 }
 @media screen and (min-width: 990px){
     .add-transaction{
         width: inherit;
         margin-left: -10%;
+        bottom: 30px;
+    }
+    .add-transaction-btn {
+        border-radius: 12px;
     }
     .add-transaction-btn:hover{
         color: #d9d9d9;
