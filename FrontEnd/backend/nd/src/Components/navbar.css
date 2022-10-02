@@ -1,0 +1,91 @@
+.logo {
+    font-family: 'Caveat', cursive;
+    font-size: 2.5rem;
+    padding: 50px 0;
+}
+
+.navbar {
+    display: flex;
+    padding: 30px;
+    align-items: center;
+    max-width: 100vw;
+}
+
+.navbar>p {
+    margin-left: auto;
+    margin-right: 5px;
+}
+
+
+
+.menu {
+    
+    background-color: #1F2A35;
+    position: fixed;
+    top: 0px;
+    z-index: 1000;
+    display: block;
+    display: flex;
+    flex-direction: column;
+    
+    padding-left: 10vw;
+
+    justify-content: space-between;
+    /* left: -270px; */
+    width: 60vw;
+    height: 100vh ;
+
+}
+
+@media screen and (min-width: 990px) {
+    .menu {
+        left: 0px !important;
+        width: 20vw;
+        padding-left: 3vw;
+    }
+
+    .navbar-container {
+        display: flex;
+    }
+
+    .close-menu {
+        display: none !important;
+    }
+
+    .navbar {
+        width: 100%;
+    }
+
+    .hamburger {
+        display: none;
+    }
+}
+
+.close-menu {
+    display: flex;
+    margin-left: -10vw;
+    flex-direction: row;
+    align-content: stretch;
+    justify-content: space-around;
+    padding: 30px 0;
+}
+
+.logout-btn{
+    padding: 50px 0;
+}
+
+.menu-list {
+    list-style: none;
+
+}
+
+.menu-list>li {
+    padding: 15px 0;
+}
+
+.menu-bottom {
+    display: flex;
+    align-items: center;
+    /* position: absolute; */
+    /* top: 87vh; */
+}

@@ -1,0 +1,69 @@
+.total{
+    /* position: absolute; */
+    /* top:150px; */
+    padding: 30px;
+    text-align: end;
+}
+.transactions{
+    /* position: absolute; */
+    /* top: 190px; */
+    width: 100vw;
+    max-height: 55vh;
+    overflow: scroll;
+    padding: 20px 0;
+    
+}
+.transactions>h3{
+    text-align: center;
+}
+.form-container{
+    padding-left: 30px;
+}
+
+.form-container>form>input{
+    border: none;
+    padding: 3px 0;
+    border-radius: 3px;
+    margin: 3px;
+}
+.form-container>form>input[type='text']:focus{
+    outline: none;
+    color: black;
+}
+
+.btns{
+    display: flex;
+    padding-left: 30px;
+}
+.btns>button{
+    padding: 3px;
+    margin: 2px;
+    border: none;
+    border-radius: 3px;
+    outline: none;
+    color: #132230;
+}
+.submit-btn{
+    color: #132230;
+    border-radius: 15px !important;
+    padding: 3px 6px !important;
+}
+
+@media screen and (min-width: 990px){
+    .btns{
+        width: 75vw;
+    }
+    .transactions{
+        width: 75vw;
+    }
+    .analytics-mains{
+        display: flex;
+    }
+    .transactions{
+        flex: 0.5;
+        height: 50vh;
+    }
+    .total{
+        text-align: start;
+    }
+}
